@@ -1,0 +1,22 @@
+{% extends "accounts/base.html" %}
+{% block content %}
+    <br>
+    <div class="container">
+        <div class="jumbtron">
+            <div class="card card-body">
+                <h1 style="text-align: center;">Login Here</h1>
+                <form method="post" >
+                    {% csrf_token%}
+                    <label for="username">Username</label>
+                    <input type="text" name="username" placeholder="Enter Username">
+                    <br><br>
+                    <label for="password">Password</label>
+                    <input type="text" name="password" placeholder="Enter Password ">
+                    <br><br>
+                    <a href="forgotassword" class='nav-link'>forget password</a><br>
+                    <input type="submit" value="LOGIN" class="btn btn-success">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

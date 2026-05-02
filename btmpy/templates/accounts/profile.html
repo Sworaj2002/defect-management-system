@@ -1,0 +1,54 @@
+{% extends "accounts/base.html" %}
+{% block content %}
+    <div class="container">
+        <div class="jumbotron">
+            <br>
+            <h1>{{ user.username }}'s profile</h1>
+            <br>
+            <div class="card card-body"> 
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Email: {{ user.email}}</h4>
+                        <p>Doorno: {{ user.userdata.Door_no }}</p>
+                        <p>Street: {{ user.userdata.Street }}</p>
+                        <p>Ciy: {{ user.userdata.City}}</p>
+                        <p>State: {{ user.userdata.State}}</p>
+                        <p>Zipcode: {{ user.userdata.Zipcode}}</p><br>
+                        <a href="{% url "update" %}"><button class="btn btn-danger">Update</button></a>
+                    </div>
+                    <div class="col-md-6">
+                        {% if user.userdata.Profile_pic %}
+                        <img src="{{ user.userdata.Profile_pic.url }}" alt="no img" style="border-radius: 50%; height: 200px; width: 200px; position: relative; left: 200px; top: 40px;">
+                        {% else %}
+                        <h1>No image</h1>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <br>
+            {% if developer %}
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card card-body">
+                        <h2>Total Defects Asign</h2>
+                        <h2>{{ total_defect }}</h2>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-body">
+                        <h2>Pending Defects</h2>
+                        <h2>{{ pending_defect }}</h2>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-body">
+                        <h2>Pending Defects</h2>
+                        <h2>{{ complete_defect }}</h2>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "defects/base.html" %}
+{% block content %}
+   <style>
+     .tbodyc:hover{
+         background-color:lightgreen; 
+         } 
+    </style>
+    <div class="container">
+        <div class="jumbotron">
+            <b style="position: relative; left: 980px; top: 50px;">Total Desects : {{td}}</b>
+            <h1 style="text-align: center;">List of all Defects</h1>
+            <a href="{% url 'filterdefect'%}" class="btn btn-success">Filter</a>
+            <table border="1" cellpadding="20" style="text-align: center;">
+                    <thead style="background-color: rgb(73, 73, 73); color: aliceblue;">
+                        <tr>
+                            <th>Defect Id</th>
+                            <th>Defect Name</th>
+                            <th>Asigned By</th>
+                            <th>Asigned To</th>
+                            <th>Description</th>
+                            <th>Defect Status</th>
+                            <th>Priority</th>
+                            {% if can_edit %}
+                            <th>Edit</th>
+                            {% endif %}
+                            {% if can_delete %}
+                            <th>Delete</th>
+                            {% endif %}
+                            <th>Asigned Date</th>
+                        </tr>
+                    </thead>
+                    <tbody style="background-color: antiquewhite;">
+                        {% for i in data %}
+                        <tr class="tbodyc">
+                            <td>{{ i.defect_id }} </td>
+                            <td>{{ i.defect_name }}</td>
+                            <td>{{ i.assigned_by }}</td>
+                            <td>{{ i.assigned_to }}</td>
+                            <td><a href="{{i.id}}" class="nav-link">More Info</a></td>
+                            <td>{{ i.defect_status }}</td>
+                            {% if i.priority == 'High' %}
+                            <td>🔔</td>
+                            {% elif i.priority == 'Medium' %}
+                            <td>Ⓜ️</td>
+                            {% elif i.priority == 'Low' %}
+                            <td>😴</td>
+                            {% endif %}
+                            {% if can_edit %}
+                            <th><a href="{% url 'edit' id=i.id %}" class="nav-link"><i class="bi bi-pencil-square"></i></a></th>
+                            {% endif %}
+                            {% if can_delete %}
+                            <th><a href="{% url 'delete' id=i.id %}" class="nav-link"><i class="bi bi-trash3"></i></a></th>
+                            {% endif %}
+                            <td>{{i.assigned_date}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <br>
+                {% if show_button %}
+                <a href="{% url 'adddefect' %}" class="btn btn-success">ADD</a>
+                {% endif %}
+                <br>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item ">
+                        <a class="page-link" href="?pg=1"><<</a>
+                    </li>
+                    {% if data.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?pg={{data.previous_page_number}}">{{data.previous_page_number}}</a></li>
+
+                    {% endif %}
+                    <li class="page-item"><a class="page-link" href="?pg={{data.number}}">{{data.number}}</a></li>
+                    {%if data.has_next %}
+                    <li class="page-item"><a class="page-link" href="?pg={{data.next_page_number}}">{{data.next_page_number}}</a></li>
+                    {%endif%}
+                    <li class="page-item">
+
+                        <a class="page-link" href="?pg={{data.paginator.num_pages}}">>></a>
+                    </li>
+                </ul>
+            </nav>
+
+
+        </div>
+    </div>
+{% endblock  %}

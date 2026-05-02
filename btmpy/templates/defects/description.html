@@ -1,0 +1,23 @@
+{% extends 'defects/base.html'%}
+{% block content%}
+    <div class="container">
+        <h1>Description page</h1>
+        <div class="jumbotron">
+            <div class="card card-body">
+                <h1>Name: {{des.defect_name}}</h1>
+                <h2>Priority: {{des.priority}}</h2>
+                <h3>Description: {{des.description}}</h3>
+                {% for i in dimg %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card card-body">
+                            <img src="{{i.defect_img.url}}" alt="No img" height="500px" width="500px">
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

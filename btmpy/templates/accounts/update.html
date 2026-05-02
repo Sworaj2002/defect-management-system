@@ -1,0 +1,51 @@
+{% extends "accounts/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+    <div class="jumbtron"><br>
+        <form action="{% url 'update' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="card card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form.username | as_crispy_field}}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form.email | as_crispy_field}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form1.Door_no | as_crispy_field}}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form1.Street | as_crispy_field}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form1.City | as_crispy_field}}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form1.State | as_crispy_field}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form1.Zipcode | as_crispy_field}}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form1.Profile_pic | as_crispy_field}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="submit" value="UPDATE" class="btn btn-success">
+                    </div>
+                </div>
+            </div>
+        </form>
+        <br><br>
+    </div>
+</div>
+{% endblock  %}

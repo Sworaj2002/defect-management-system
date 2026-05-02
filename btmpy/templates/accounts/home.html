@@ -1,0 +1,126 @@
+{% extends "accounts/base.html" %}
+{% block content %}
+<style>
+    body {
+        background-color: #f4f7fa;
+        font-family: Arial, sans-serif;
+    }
+    .header-section {
+        text-align: center;
+        padding: 40px 20px;
+    }
+    .header-section h1 {
+        font-weight: bold;
+        color: #0d6efd;
+    }
+    .card {
+        border-radius: 12px;
+        box-shadow: 0px 3px 10px rgba(0,0,0,0.1);
+    }
+    .status-card {
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        padding: 20px;
+        border-radius: 12px;
+    }
+    .status-total {
+        background-color: #17a2b8;
+    }
+    .status-complete {
+        background-color: #28a745;
+    }
+    .status-pending {
+        background-color: #ffc107;
+        color: black;
+    }
+</style>
+
+<div class="header-section">
+    <h1>Defect Management System</h1>
+    <p class="lead">Efficiently track, manage, and resolve defects between developers and testers.</p>
+</div>
+
+<div class="container">
+    <!-- Features Section -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <h3 class="mb-3">Features</h3>
+        </div>
+        <div class="col-md-3">
+            <div class="card p-3">
+                <h5>📋 List of All Defects</h5>
+                <p>View all reported defects in a centralized table for quick tracking and action.</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card p-3">
+                <h5>🔍 Filter by Developer</h5>
+                <p>Filter defects assigned to a specific developer for better workload management.</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card p-3">
+                <h5>👤 Profile & Authentication</h5>
+                <p>Separate login for Developers and Testers with role-based access.</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card p-3">
+                <h5>📧 Automated Email Notifications</h5>
+                <p>Automatically send an email to the developer whenever a defect is assigned to them.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Cards -->
+    <div class="row text-center mb-4">
+        <div class="col-md-4">
+            <div class="status-card status-total">
+                Total Defects: <span id="total-count">{{defect}}</span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="status-card status-complete">
+                Completed Defects: <span id="completed-count">{{cdefect}}</span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="status-card status-pending">
+                Pending Defects: <span id="pending-count">{{pdefect}}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Roles Section -->
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="mb-3">User Roles</h3>
+        </div>
+        <div class="col-md-3">
+            <div class="card p-3">
+                <h5>👨‍💻 Developer</h5>
+                <p>View assigned defects, update progress, and mark them as completed.</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card p-3">
+                <h5>🧪 Tester</h5>
+                <p>Report new defects, retest fixes, and communicate with developers.</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card p-3">
+                <h5>🛠 Admin (Tester)</h5>
+                <p>Edit, delete, and manage defects reported by testers.</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card p-3">
+                <h5>👑 Super Admin</h5>
+                <p>Full control over the system, user management, and defect handling.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
